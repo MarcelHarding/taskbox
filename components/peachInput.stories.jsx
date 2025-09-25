@@ -6,18 +6,8 @@ export default {
   component: PeachInput,
 };
 
-export const Default = {
-  args: {
-    labelText: 'Label',
-    placeholder: 'Digite algo...',
-    status: 'normal',
-    iconType: 'close',
-    otherLabelText: 'Hint',
-  },
-};
-
 export const PlaceHolder = {
-    args: {
+  args: {
     labelText: 'Label',
     placeholder: 'Digite algo...',
     status: 'placeholder',
@@ -53,7 +43,7 @@ export const Typing = {
   },
 };
 export const Disable = {
-    args: {
+  args: {
     labelText: 'Label',
     placeholder: 'Digite algo...',
     status: 'disabled',
@@ -62,7 +52,7 @@ export const Disable = {
   },
 };
 export const Filled = {
-    args: {
+  args: {
     labelText: 'Label',
     placeholder: 'Digite algo...',
     status: 'filled',
