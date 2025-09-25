@@ -12,28 +12,28 @@ type LabelProps = {
   text: string;
 };
 
-export default function LabelHint({status, text} : {status:string, text:string}) {
-const { darkMode } = useThemeStore();  
+export default function LabelHint({ status, text, }: { status: string, text: string }) {
+  const { darkMode } = useThemeStore();
 
-const labelColors: Record<StatusType, string> = {
+  const labelColors: Record<StatusType, string> = {
     placeholder: 'Background Main',
     typing: 'Success Background Dark',
     error: 'Error Main',
     success: 'Success Main',
-    disabled: 'Neutral Mild 2',
+    disabled: 'Black 5%',
     filled: 'Black 65%',
     normal: 'Primary Main',
-};
-  
-const colorKey = labelColors[status];
-const color = getPeachColor(colorKey, darkMode);
-  
+  };
+
+  const colorKey = labelColors[status];
+  const color = getPeachColor(colorKey);
+
   return (
     <View style={styles.container}>
       <Text style={[styles.label, { fontSize: getPeachFontSize('small'), color }]}>
-          {text}
-        </Text>
-      </View>
+        {text}
+      </Text>
+    </View>
   );
 }
 

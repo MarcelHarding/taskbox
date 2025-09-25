@@ -19,13 +19,13 @@ export default function Label({ status, text }: LabelProps) {
     typing: 'Success Background Dark',
     error: 'Error Main',
     success: 'Success Main',
-    disabled: 'Neutral Mild 2',
+    disabled: 'Black 5%',
     filled: 'Black 65%',
     normal: 'Primary Main',
   };
 
   const colorKey = labelColors[status];
-  const color = getPeachColor(colorKey, darkMode);
+  const color = getPeachColor(colorKey);
 
   return (
     <View style={styles.container}>

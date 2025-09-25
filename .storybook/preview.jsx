@@ -1,5 +1,6 @@
 import { View } from "react-native";
 import { useThemeStore } from "../components/themeStore";
+import { getPeachColor } from "../utils/colors/getPeachColor";
 
 /** @type{import("@storybook/react").Preview} */
 const preview = {
@@ -14,20 +15,19 @@ const preview = {
 
   decorators: [
     (Story, { parameters }) => {
-       const { darkMode } = useThemeStore();
-      console.log("dark mode?",darkMode)
+
       return (
-      <View
-        style={{
-          flex: 1,
-          backgroundColor:
-              !darkMode ? "#ffffffff" : "#6d6d6dff",
-          padding: 8,
-        }}
-      >
-        <Story />
-      </View>
-    )},
+        <View
+          style={{
+            flex: 1,
+            backgroundColor: getPeachColor('Primary Background'),
+            padding: 8,
+          }}
+        >
+          <Story />
+        </View>
+      )
+    },
   ],
 };
 

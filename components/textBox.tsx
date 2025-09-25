@@ -30,7 +30,7 @@ export default function TextBox({
     typing: 'Success Background Dark',
     error: 'Error Main',
     success: 'Success Main',
-    disabled: 'Neutral Mild 2',
+    disabled: 'Black 5%',
     filled: 'Black 65%',
     normal: 'Primary Main',
   };
@@ -43,7 +43,8 @@ export default function TextBox({
         style={[
           styles.inputWrapper,
           {
-            borderColor: getPeachColor(selectedColor, darkMode),
+            borderColor: getPeachColor(selectedColor),
+            backgroundColor: getPeachColor('Primary Background'),
             height: Math.max(40, inputHeight),
           },
         ]}
@@ -51,12 +52,12 @@ export default function TextBox({
         <TextInput
           style={[
             styles.input,
-            status === 'disabled' && { color: '#aaa' },
+            { color: getPeachColor('Primary Background') },
           ]}
           value={value}
           onChangeText={onChangeText}
           placeholder={placeholderValue}
-          placeholderTextColor="#999"
+          placeholderTextColor={getPeachColor(selectedColor)}
           editable={status !== 'disabled'}
           multiline
           onContentSizeChange={(event) =>
@@ -67,7 +68,7 @@ export default function TextBox({
           <Ionicons
             name={iconType}
             size={24}
-            color={getPeachColor(selectedColor, darkMode)}
+            color={getPeachColor(selectedColor)}
           />
         </TouchableOpacity>
       </View>
@@ -88,7 +89,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 20,
     paddingHorizontal: 10,
-    backgroundColor: '#fff',
     width: '90%',
   },
   input: {
