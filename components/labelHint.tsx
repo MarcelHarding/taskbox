@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { getPeachColor } from '../utils/colors/getPeachColor';
 import { getPeachFontSize } from '../utils/textSize/getPeachTextSize';
 import { useThemeStore } from './themeStore';
+import { Ionicons } from '@expo/vector-icons';
 
 type StatusType = 'normal' | 'placeholder' | 'typing' | 'error' | 'success' | 'disabled' | 'filled';
 
@@ -28,9 +29,12 @@ export default function LabelHint({ status, text, }: { status: string, text: str
   const colorKey = labelColors[status];
   const color = getPeachColor(colorKey);
 
+  const iconName = status === "success" ? "heart" : (status === "error" ? "warning" : undefined)
+
   return (
     <View style={styles.container}>
       <Text style={[styles.label, { fontSize: getPeachFontSize('small'), color }]}>
+        {iconName && <Ionicons name={iconName} color={color} />}
         {text}
       </Text>
     </View>
