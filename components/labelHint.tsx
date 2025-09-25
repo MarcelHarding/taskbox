@@ -13,23 +13,18 @@ type LabelProps = {
   text: string;
 };
 
-export default function LabelHint({ status, text, }: { status: string, text: string }) {
+export default function LabelHint({ status, text, }: LabelProps) {
   const { darkMode } = useThemeStore();
 
-  const labelColors: Record<StatusType, string> = {
-    placeholder: 'Background Main',
-    typing: 'Success Background Dark',
-    error: 'Error Main',
-    success: 'Success Main',
-    disabled: 'Black 5%',
-    filled: 'Black 65%',
-    normal: 'Primary Main',
-  };
+  let color = getPeachColor('Black 65%');
 
-  const colorKey = labelColors[status];
-  const color = getPeachColor(colorKey);
+  if (status === 'error') {
+    color = getPeachColor('Error Main');
+  } else if (status === 'success') {
+    color = getPeachColor('Success Main');
+  }
 
-  const iconName = status === "success" ? "heart" : (status === "error" ? "warning" : undefined)
+  const iconName = status === "success" ? "checkmark-circle" : (status === "error" ? "alert-circle" : undefined)
 
   return (
     <View style={styles.container}>
@@ -41,9 +36,20 @@ export default function LabelHint({ status, text, }: { status: string, text: str
   );
 }
 
-
 const styles = StyleSheet.create({
   container: { padding: 10, alignItems: 'flex-start', width: '100%' },
   label: { fontWeight: '600' },
 });
 
+//  const labelColors: Record<StatusType, string> = {
+//     placeholder: 'Background Main',
+//     typing: 'Success Background Dark',
+//     error: 'Error Main',
+//     success: 'Success Main',
+//     disabled: 'Black 5%',
+//     filled: 'Black 65%',
+//     normal: 'Primary Main',
+//    };
+
+// const colorKey = labelColors[status];
+// const color = getPeachColor(colorKey);
