@@ -4,16 +4,9 @@ import { View, StyleSheet } from 'react-native';
 import Label from './label';
 import TextBox from './textBox';
 import LabelHint from './labelHint';
+import { StatusType } from '../utils/types/statusType';
 
 type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
-type StatusType =
-  | 'normal'
-  | 'placeholder'
-  | 'typing'
-  | 'error'
-  | 'success'
-  | 'disabled'
-  | 'filled';
 
 type PeachInputProps = {
   labelText: string;

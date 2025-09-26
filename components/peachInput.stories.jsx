@@ -9,7 +9,7 @@ export default {
 export const PlaceHolder = {
   args: {
     labelText: 'Label',
-    placeholder: 'Digite algo...',
+    placeholder: 'Placeholder',
     status: 'placeholder',
     iconType: 'close',
     otherLabelText: 'Hint',
@@ -18,7 +18,7 @@ export const PlaceHolder = {
 export const Error = {
   args: {
     labelText: 'Label',
-    placeholder: 'Erro...',
+    placeholder: 'Placeholder...',
     status: 'error',
     iconType: 'close',
     otherLabelText: 'Hint',
@@ -27,7 +27,7 @@ export const Error = {
 export const Success = {
   args: {
     labelText: 'Label',
-    placeholder: 'Tudo certo!',
+    placeholder: 'Placeholder',
     status: 'success',
     iconType: 'close',
     otherLabelText: 'Hint',
@@ -36,7 +36,7 @@ export const Success = {
 export const Typing = {
   args: {
     labelText: 'Label',
-    placeholder: 'Digitando...',
+    placeholder: 'Placeholder',
     status: 'typing',
     iconType: 'close',
     otherLabelText: 'Hint',
@@ -45,7 +45,7 @@ export const Typing = {
 export const Disable = {
   args: {
     labelText: 'Label',
-    placeholder: 'Digite algo...',
+    placeholder: 'Placeholder',
     status: 'disabled',
     iconType: 'close',
     otherLabelText: 'Hint',
@@ -54,7 +54,7 @@ export const Disable = {
 export const Filled = {
   args: {
     labelText: 'Label',
-    placeholder: 'Digite algo...',
+    placeholder: 'Placeholder',
     status: 'filled',
     iconType: 'close',
     otherLabelText: 'Hint',

@@ -1052,9 +1052,6 @@
   dependencies:
     "@types/hammerjs" "^2.0.36"
 
-"@esbuild/linux-x64@0.23.1":
-  version "0.23.1"
-
 "@expo/bunyan@^4.0.0":
   version "4.0.1"
   dependencies:
@@ -4365,9 +4362,6 @@ lighthouse-logger@^1.0.0:
   dependencies:
     debug "^2.6.9"
     marky "^1.2.2"
-
-lightningcss-linux-x64-gnu@1.19.0:
-  version "1.19.0"
 
 lightningcss@~1.19.0:
   version "1.19.0"

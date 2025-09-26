@@ -2,10 +2,9 @@ import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 import { getPeachColor } from '../utils/colors/getPeachColor';
-import { useThemeStore } from './themeStore';
+import { StatusType } from '../utils/types/statusType';
 
 type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
-type StatusType = 'normal' | 'placeholder' | 'typing' | 'error' | 'success' | 'disabled' | 'filled';
 
 type TextBoxProps = {
   status: StatusType;
@@ -23,20 +22,23 @@ export default function TextBox({
   onChangeText,
 }: TextBoxProps) {
   const [inputHeight, setInputHeight] = useState(40);
-  const { darkMode } = useThemeStore();
 
-  const borderColors: Record<StatusType, string> = {
-    placeholder: 'Background Main',
-    typing: 'Success Background Dark',
-    error: 'Error Main',
-    success: 'Success Main',
-    disabled: 'Black 5%',
-    filled: 'Black 65%',
-    normal: 'Primary Main',
-  };
+  let borderColor = getPeachColor('Black 65%');
 
-  const selectedColor = borderColors[status];
-  const iconColor = status === 'disabled' ? getPeachColor('Black 5%') : getPeachColor('Black 100%')
+  if (status === 'filled' || status === 'placeholder') {
+    borderColor = getPeachColor('Black 10%');
+  } else if (status === 'typing') {
+    borderColor = getPeachColor('Primary Mild 2');
+  } else if (status === 'error') {
+    borderColor = getPeachColor('Error Main');
+  } else if (status === 'success') {
+    borderColor = getPeachColor('Success Main');
+  } else if (status === 'disabled') {
+    borderColor = getPeachColor('Black 5%');
+  }
+
+  const iconColor = status === 'disabled' ? getPeachColor('Black 10%') : getPeachColor('Black 100%')
+  const bgColor = status === 'disabled' ? getPeachColor('Black 5%') : getPeachColor('Primary Background');
 
   return (
     <View style={styles.container}>
@@ -44,8 +46,8 @@ export default function TextBox({
         style={[
           styles.inputWrapper,
           {
-            borderColor: getPeachColor(selectedColor),
-            backgroundColor: getPeachColor('Primary Background'),
+            borderColor: borderColor,
+            backgroundColor: bgColor,
             height: Math.max(40, inputHeight),
           },
         ]}
@@ -58,7 +60,7 @@ export default function TextBox({
           value={value}
           onChangeText={onChangeText}
           placeholder={placeholderValue}
-          placeholderTextColor={getPeachColor(selectedColor)}
+          placeholderTextColor={getPeachColor('Black 65%')}
           editable={status !== 'disabled'}
           multiline
           onContentSizeChange={(event) =>
@@ -66,7 +68,7 @@ export default function TextBox({
           }
         />
 
-        <TouchableOpacity onPress={() => console.log('Ícone pressionado')}>
+        <TouchableOpacity >
           <Ionicons
             name={iconType}
             size={24}

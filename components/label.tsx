@@ -3,8 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import { getPeachColor } from '../utils/colors/getPeachColor';
 import { getPeachFontSize } from '../utils/textSize/getPeachTextSize';
 import { useThemeStore } from './themeStore';
+import { StatusType } from '../utils/types/statusType';
 
-type StatusType = 'normal' | 'placeholder' | 'typing' | 'error' | 'success' | 'disabled' | 'filled';
 
 type LabelProps = {
   status: StatusType;
@@ -12,20 +12,12 @@ type LabelProps = {
 };
 
 export default function Label({ status, text }: LabelProps) {
-  const { darkMode } = useThemeStore();
 
-  const labelColors: Record<StatusType, string> = {
-    placeholder: 'Background Main',
-    typing: 'Success Background Dark',
-    error: 'Error Main',
-    success: 'Success Main',
-    disabled: 'Black 5%',
-    filled: 'Black 65%',
-    normal: 'Primary Main',
-  };
+  let color = getPeachColor('Black 100%');
 
-  const colorKey = labelColors[status];
-  const color = getPeachColor(colorKey);
+  if (status === 'disabled') {
+    color = getPeachColor('Black 5%');
+  }
 
   return (
     <View style={styles.container}>

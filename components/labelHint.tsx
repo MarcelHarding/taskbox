@@ -5,8 +5,8 @@ import { getPeachColor } from '../utils/colors/getPeachColor';
 import { getPeachFontSize } from '../utils/textSize/getPeachTextSize';
 import { useThemeStore } from './themeStore';
 import { Ionicons } from '@expo/vector-icons';
+import { StatusType } from '../utils/types/statusType';
 
-type StatusType = 'normal' | 'placeholder' | 'typing' | 'error' | 'success' | 'disabled' | 'filled';
 
 type LabelProps = {
   status: StatusType;
@@ -14,7 +14,7 @@ type LabelProps = {
 };
 
 export default function LabelHint({ status, text, }: LabelProps) {
-  const { darkMode } = useThemeStore();
+
 
   let color = getPeachColor('Black 65%');
 
@@ -22,8 +22,11 @@ export default function LabelHint({ status, text, }: LabelProps) {
     color = getPeachColor('Error Main');
   } else if (status === 'success') {
     color = getPeachColor('Success Main');
+  } else if (status === 'disabled') {
+    color = getPeachColor('Black 5%');
+  } else if (status === 'placeholder' || status === 'typing' || status === 'filled') {
+    color = getPeachColor('Black 65%');
   }
-
   const iconName = status === "success" ? "checkmark-circle" : (status === "error" ? "alert-circle" : undefined)
 
   return (
