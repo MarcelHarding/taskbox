@@ -7,6 +7,7 @@ import { Ionicons } from "@expo/vector-icons";
 type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
 
 type ButtonColor = "green" | "red"
+
 type PeachButtonProps = {
     label: string;
     buttonStyle: ButtonStyle;
@@ -26,33 +27,6 @@ export const PeachButton = ({
     leftIconType,
     rightIconType,
 }: PeachButtonProps) => {
-    let backgroundColor: string;
-    let borderColor: string | undefined;
-    let textColor: string;
-
-    if (disabled) {
-        textColor = getPeachColor("Black 25%");
-        if (buttonStyle === "solid") {
-            backgroundColor = getPeachColor("Black 5%");
-        } else if (buttonStyle === "outline") {
-            backgroundColor = getPeachColor("Transparent");
-            borderColor = getPeachColor("Black 5%");
-        } else {
-            backgroundColor = getPeachColor("Transparent");
-        }
-    } else {
-        if (buttonStyle === "solid") {
-            backgroundColor = getPeachColor("Primary Main");
-            textColor = getPeachColor("White 100%");
-        } else if (buttonStyle === "outline") {
-            backgroundColor = getPeachColor("Transparent");
-            borderColor = getPeachColor("Primary Main");
-            textColor = getPeachColor("Primary Main");
-        } else {
-            backgroundColor = getPeachColor("Transparent");
-            textColor = getPeachColor("Primary Main");
-        }
-    }
 
     const iconCount = (leftIconType ? 1 : 0) + (rightIconType ? 1 : 0);
 
@@ -62,34 +36,77 @@ export const PeachButton = ({
         <Pressable
             disabled={disabled}
             onPress={disabled ? () => { } : onPress}
-            style={({ pressed }) => [
-                styles.base,
-                {
-                    backgroundColor,
-                    borderColor,
-                    borderWidth: borderColor ? 1 : 0,
-                    borderRadius: isIconOnly ? 22 : 9999,
-                },
-                pressed && !disabled && styles.pressed,
-            ]}
+            style={({ pressed }) => {
+
+                let backgroundColor: string;
+                let borderColor: string | undefined;
+                //let textColorIfPressed: string;
+
+                if (disabled) {
+                    if (buttonStyle === "solid") {
+                        backgroundColor = getPeachColor("Black 5%");
+                    } else if (buttonStyle === "outline") {
+                        backgroundColor = getPeachColor("Transparent");
+                        borderColor = getPeachColor("Black 5%");
+                    } else {
+                        backgroundColor = getPeachColor("Transparent");
+                    }
+                } else {
+                    if (buttonStyle === "solid") {
+                        backgroundColor = pressed ? getPeachColor("Primary Dark 2") : getPeachColor("Primary Main");;
+                    } else if (buttonStyle === "outline") {
+                        borderColor = getPeachColor("Primary Main");
+                        backgroundColor = pressed ? getPeachColor("Primary Dark 2") : getPeachColor("Transparent");
+                    } else {
+                        backgroundColor = pressed ? getPeachColor("Primary Dark 2") : getPeachColor("Transparent");
+                    }
+                }
+
+                return [
+                    styles.base,
+                    {
+                        backgroundColor,
+                        borderColor,
+                        borderWidth: borderColor ? 1 : 0,
+                        borderRadius: isIconOnly ? 22 : 9999,
+                    },
+                ];
+            }}
         >
-            {leftIconType && (
-                <Ionicons
-                    name={leftIconType}
-                    size={20}
-                    color={textColor}
-                    style={label ? styles.leftIcon : undefined}
-                />
-            )}
-            <Text style={[styles.label, { color: textColor }]}>{label}</Text>
-            {rightIconType && (
-                <Ionicons
-                    name={rightIconType}
-                    size={20}
-                    color={textColor}
-                    style={label ? styles.rightIcon : undefined}
-                />
-            )}
+            {({ pressed }) => {
+                let textColor: string;
+                if (disabled) {
+                    textColor = getPeachColor("Black 25%");
+                } else if (buttonStyle === "solid") {
+                    textColor = getPeachColor("White 100%");
+                } else {
+                    textColor = getPeachColor("Primary Main");
+                }
+
+                return (
+                    <>
+                        {leftIconType && (
+                            <Ionicons
+                                name={leftIconType}
+                                size={20}
+                                color={textColor}
+                                style={styles.leftIcon}
+                            />
+                        )}
+
+                        {label && <Text style={[styles.label, { color: textColor }]}>{label}</Text>}
+
+                        {rightIconType && (
+                            <Ionicons
+                                name={rightIconType}
+                                size={20}
+                                color={textColor}
+                                style={styles.rightIcon}
+                            />
+                        )}
+                    </>
+                );
+            }}
         </Pressable>
     );
 };
@@ -102,16 +119,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
     },
-    pressed: {
-        opacity: 0.7,
-    },
-    // hovered: {
-    //     opacity: 0.85,
-    // },
-    // focused: {
-    //     borderWidth: 2,
-    //     borderColor: getPeachColor("Primary Main"),
-    // },
     label: {
         fontSize: 20,
         fontWeight: "600",
