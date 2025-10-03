@@ -3,11 +3,8 @@ import { Pressable, Text, StyleSheet, View } from "react-native";
 import { getPeachColor } from "../utils/colors/getPeachColor";
 import { ButtonStyle } from "../utils/types/buttonStyle";
 import { Ionicons } from "@expo/vector-icons";
-
 type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
-
 type ButtonColor = "green" | "red"
-
 type PeachButtonProps = {
     label: string;
     buttonStyle: ButtonStyle;
@@ -17,7 +14,6 @@ type PeachButtonProps = {
     leftIconType?: IoniconName;
     rightIconType?: IoniconName;
 };
-
 export const PeachButton = ({
     label,
     buttonStyle,
@@ -27,21 +23,16 @@ export const PeachButton = ({
     leftIconType,
     rightIconType,
 }: PeachButtonProps) => {
-
     const iconCount = (leftIconType ? 1 : 0) + (rightIconType ? 1 : 0);
-
     const isIconOnly = !label && iconCount > 0;
-
     return (
         <Pressable
             disabled={disabled}
             onPress={disabled ? () => { } : onPress}
             style={({ pressed, hovered }: any) => {
-
                 let backgroundColor: string;
                 let borderColor: string | undefined;
                 //let textColorIfPressed: string;
-
                 if (disabled) {
                     if (buttonStyle === "solid") {
                         backgroundColor = getPeachColor("Black 5%");
@@ -81,7 +72,6 @@ export const PeachButton = ({
                         }
                     }
                 }
-
                 return [
                     styles.base,
                     {
@@ -93,7 +83,7 @@ export const PeachButton = ({
                 ];
             }}
         >
-            {({ pressed }) => {
+            {({ pressed, hovered }: any) => {
                 let textColor: string;
                 if (disabled) {
                     textColor = getPeachColor("Black 25%");
@@ -101,12 +91,23 @@ export const PeachButton = ({
                     if (buttonStyle === "solid") {
                         textColor = getPeachColor("White 100%");
                     } else if (buttonStyle === "outline") {
-                        textColor = pressed ? getPeachColor("Primary Dark 2") : getPeachColor("Primary Main");
+                        if (pressed) {
+                            textColor = getPeachColor("Primary Dark 2");
+                        } else if (hovered) {
+                            textColor = getPeachColor("Primary Dark 1");
+                        } else {
+                            textColor = getPeachColor("Primary Main");
+                        }
                     } else if (buttonStyle === "ghost") {
-                        textColor = pressed ? getPeachColor("Primary Dark 2") : getPeachColor("Primary Main");
+                        if (pressed) {
+                            textColor = getPeachColor("Primary Dark 2");
+                        } else if (hovered) {
+                            textColor = getPeachColor("Primary Dark 1");
+                        } else {
+                            textColor = getPeachColor("Primary Main");
+                        }
                     }
                 }
-
                 return (
                     <>
                         {leftIconType && (
@@ -117,9 +118,7 @@ export const PeachButton = ({
                                 style={styles.leftIcon}
                             />
                         )}
-
                         {label && <Text style={[styles.label, { color: textColor }]}>{label}</Text>}
-
                         {rightIconType && (
                             <Ionicons
                                 name={rightIconType}
@@ -134,7 +133,6 @@ export const PeachButton = ({
         </Pressable>
     );
 };
-
 const styles = StyleSheet.create({
     base: {
         paddingVertical: 12,
