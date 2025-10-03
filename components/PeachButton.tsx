@@ -36,7 +36,7 @@ export const PeachButton = ({
         <Pressable
             disabled={disabled}
             onPress={disabled ? () => { } : onPress}
-            style={({ pressed }) => {
+            style={({ pressed, hovered }: any) => {
 
                 let backgroundColor: string;
                 let borderColor: string | undefined;
@@ -53,12 +53,32 @@ export const PeachButton = ({
                     }
                 } else {
                     if (buttonStyle === "solid") {
-                        backgroundColor = pressed ? getPeachColor("Primary Dark 2") : getPeachColor("Primary Main");;
+                        if (pressed) {
+                            backgroundColor = getPeachColor("Primary Dark 2");
+                        } else if (hovered) {
+                            backgroundColor = getPeachColor("Primary Dark 1");
+                        } else {
+                            backgroundColor = getPeachColor("Primary Main");
+                        }
                     } else if (buttonStyle === "outline") {
-                        borderColor = getPeachColor("Primary Main");
-                        backgroundColor = pressed ? getPeachColor("Primary Dark 2") : getPeachColor("Transparent");
-                    } else {
-                        backgroundColor = pressed ? getPeachColor("Primary Dark 2") : getPeachColor("Transparent");
+                        if (pressed) {
+                            backgroundColor = getPeachColor("Primary Mild 1");
+                            borderColor = getPeachColor("Primary Dark 2");
+                        } else if (hovered) {
+                            backgroundColor = getPeachColor("Primary Background Dark");
+                            borderColor = getPeachColor("Primary Dark 1");
+                        } else {
+                            backgroundColor = getPeachColor("Transparent");
+                            borderColor = getPeachColor("Primary Main")
+                        }
+                    } else if (buttonStyle === "ghost") {
+                        if (pressed) {
+                            backgroundColor = getPeachColor("Transparent");
+                        } else if (hovered) {
+                            backgroundColor = getPeachColor("Transparent");
+                        } else {
+                            backgroundColor = getPeachColor("Transparent");
+                        }
                     }
                 }
 
@@ -77,10 +97,14 @@ export const PeachButton = ({
                 let textColor: string;
                 if (disabled) {
                     textColor = getPeachColor("Black 25%");
-                } else if (buttonStyle === "solid") {
-                    textColor = getPeachColor("White 100%");
                 } else {
-                    textColor = getPeachColor("Primary Main");
+                    if (buttonStyle === "solid") {
+                        textColor = getPeachColor("White 100%");
+                    } else if (buttonStyle === "outline") {
+                        textColor = pressed ? getPeachColor("Primary Dark 2") : getPeachColor("Primary Main");
+                    } else if (buttonStyle === "ghost") {
+                        textColor = pressed ? getPeachColor("Primary Dark 2") : getPeachColor("Primary Main");
+                    }
                 }
 
                 return (
@@ -123,6 +147,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: "600",
         marginHorizontal: 8,
+        userSelect: 'none',
     },
     leftIcon: {
         marginRight: 4,
