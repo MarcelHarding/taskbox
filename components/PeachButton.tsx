@@ -45,22 +45,22 @@ export const PeachButton = ({
                 } else {
                     if (buttonStyle === "solid") {
                         if (pressed) {
-                            backgroundColor = getPeachColor("Primary Dark 2");
+                            backgroundColor = buttonColor === 'red' ? getPeachColor("Primary Dark 2") : getPeachColor("Success Dark 2");
                         } else if (hovered) {
-                            backgroundColor = getPeachColor("Primary Dark 1");
+                            backgroundColor = buttonColor === 'red' ? getPeachColor("Primary Dark 1") : getPeachColor("Success Dark 1");
                         } else {
-                            backgroundColor = getPeachColor("Primary Main");
+                            backgroundColor = buttonColor === 'red' ? getPeachColor("Primary Main") : getPeachColor("Success Main");
                         }
                     } else if (buttonStyle === "outline") {
                         if (pressed) {
-                            backgroundColor = getPeachColor("Primary Mild 1");
-                            borderColor = getPeachColor("Primary Dark 2");
+                            backgroundColor = buttonColor === 'red' ? getPeachColor("Primary Mild 1") : getPeachColor("Success Mild 2");
+                            borderColor = buttonColor === 'red' ? getPeachColor("Primary Dark 2") : getPeachColor("Success Dark 2");
                         } else if (hovered) {
-                            backgroundColor = getPeachColor("Primary Background Dark");
-                            borderColor = getPeachColor("Primary Dark 1");
+                            backgroundColor = buttonColor === 'red' ? getPeachColor("Primary Background Dark") : getPeachColor("Success Background Dark");
+                            borderColor = buttonColor === 'red' ? getPeachColor("Primary Dark 1") : getPeachColor("Success Dark 1");
                         } else {
-                            backgroundColor = getPeachColor("Transparent");
-                            borderColor = getPeachColor("Primary Main")
+                            backgroundColor = buttonColor === 'red' ? getPeachColor("Transparent") : getPeachColor("Transparent");
+                            borderColor = buttonColor === 'red' ? getPeachColor("Primary Main") : getPeachColor("Success Main")
                         }
                     } else if (buttonStyle === "ghost") {
                         if (pressed) {
@@ -92,19 +92,19 @@ export const PeachButton = ({
                         textColor = getPeachColor("White 100%");
                     } else if (buttonStyle === "outline") {
                         if (pressed) {
-                            textColor = getPeachColor("Primary Dark 2");
+                            textColor = buttonColor === 'red' ? getPeachColor("Primary Dark 2") : getPeachColor("Success Dark 2");
                         } else if (hovered) {
-                            textColor = getPeachColor("Primary Dark 1");
+                            textColor = buttonColor === 'red' ? getPeachColor("Primary Dark 1") : getPeachColor("Success Dark 1");
                         } else {
-                            textColor = getPeachColor("Primary Main");
+                            textColor = buttonColor === 'red' ? getPeachColor("Primary Main") : getPeachColor("Success Main");
                         }
                     } else if (buttonStyle === "ghost") {
                         if (pressed) {
-                            textColor = getPeachColor("Primary Dark 2");
+                            textColor = buttonColor === 'red' ? getPeachColor("Primary Dark 2") : getPeachColor("Success Dark 2");
                         } else if (hovered) {
-                            textColor = getPeachColor("Primary Dark 1");
+                            textColor = buttonColor === 'red' ? getPeachColor("Primary Dark 1") : getPeachColor("Success Dark 1");
                         } else {
-                            textColor = getPeachColor("Primary Main");
+                            textColor = buttonColor === 'red' ? getPeachColor("Primary Main") : getPeachColor("Success Main");
                         }
                     }
                 }
