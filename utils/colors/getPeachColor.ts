@@ -79,11 +79,12 @@ export const themeColors: Record<
   },
   "Primary Background": {
     light: { r: 1, g: 0.9764705896, b: 0.9647058844, a: 1 },
-    dark: { r: 0.2627451122, g: 0.2627451122, b: 0.2627451122, a: 1 }
+    dark: { r: 26 / 255, g: 18 / 255, b: 16 / 255, a: 1 }
   },
   "Primary Background Light": {
     light: { r: 1, g: 0.9882352948, b: 0.9803921580, a: 1 },
     dark: { r: 1, g: 0.9882352948, b: 0.9803921580, a: 1 }
+
   },
   "Success Dark 2": {
     light: { r: 0.1411764770, g: 0.4352941215, b: 0, a: 1 },
