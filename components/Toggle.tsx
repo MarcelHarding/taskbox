@@ -11,17 +11,19 @@ type TradeToggleProps = {
 
 const styles = StyleSheet.create({
     switchContainer: {
-        width: 50,
-        height: 28,
+        width: 45,
+        height: 25,
         borderRadius: 20,
         justifyContent: 'flex-start',
         flexDirection: 'row',
         padding: 4,
+        overflow: 'visible',
+        alignItems: 'center'
     },
     circle: {
-        width: 20,
-        height: 20,
-        borderRadius: 10,
+        width: 30,
+        height: 30,
+        borderRadius: 18,
     },
 });
 
@@ -69,7 +71,7 @@ export const TradeToggle: React.FC<TradeToggleProps> = ({
                     styles.circle,
                     {
                         backgroundColor: getCircleColor(),
-                        marginLeft: selected ? 26 : 0, // move círculo
+                        marginLeft: selected ? 15 : -10,
                     },
                 ]}
             />
