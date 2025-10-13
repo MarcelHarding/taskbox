@@ -256,4 +256,4 @@ export const getPeachColor = (colorName: string): string => {
   const color = themeColors[colorName];
 
   return darkMode ? rgbaToHex(color.dark) : rgbaToHex(color.light);
-};  
+};
